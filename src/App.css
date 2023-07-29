@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital@0;1&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+img {
+        margin: 0;
+}
+
+body {
+    font-family: 'Comic Neue', cursive;
+    background-color: #F3F3FB;
+}
+
+.nav {
+        background-color: #191F3F;
+}
+
+.navlinks {
+    color: #F3F3FB;
+}

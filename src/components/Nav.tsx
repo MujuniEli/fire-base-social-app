@@ -11,9 +11,10 @@ export const Nav = () => {
     };
     return (
             <div className="nav">
-                <Link to="/"> Home </Link>
-                <Link to="/login"> Login </Link>
-
+                <div className="navlinks">
+                    <Link to="/"> Home </Link>
+                    <Link to="/login"> Login </Link>
+                </div>
                 <div>
                     { user && (
                         <>
