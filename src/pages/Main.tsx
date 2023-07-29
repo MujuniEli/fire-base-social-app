@@ -1,3 +1,7 @@
 export const  Main = () => {
-    return <div>main page</div>
+    return (
+            <div>
+                <h4>main page</h4>
+            </div>
+    )
 }
