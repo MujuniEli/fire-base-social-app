@@ -1,7 +1,7 @@
 export const Login = () => {
     return (
             <div className="login">
-                <h4>This is a login page</h4>
+                <p>sign in with Google to continue</p>
             </div>
     )
 }
