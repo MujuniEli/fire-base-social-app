@@ -19,3 +19,9 @@ body {
     font-family: 'Comic Neue', cursive;
     background-color: #F3F3FB;
 }
+
+input,
+button,
+select {
+        font: inherit;
+}
