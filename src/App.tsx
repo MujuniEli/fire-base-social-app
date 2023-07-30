@@ -4,6 +4,7 @@ import './App.css'
 import { Main } from './pages/Main'
 import { Login } from './pages/Login'
 import { Nav } from './components/Nav'
+import { CreatePost } from './pages/createPost/CreatePost'
 
 function App() {
   
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path='/' element={ <Main /> } />
           <Route path='/login' element={ <Login /> } />
+          <Route path='/createpost' element={ <CreatePost /> } />
         </Routes>
       </Router>
         
