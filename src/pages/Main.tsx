@@ -1,9 +1,22 @@
 import { getDocs, collection } from "firebase/firestore";
 import { database } from "../config/firebase";
 
+interface Post {
+    id: string,
+    userId: string,
+    title: string,
+    userName: string,
+    description: string
+}
+
 export const  Main = () => {
-    const [postsList, setPostsList] = useState(null)
+    const [postsList, setPostsList] = useState<Post[] | null>(null);
     const postRef = collection(database, "posts");
+
+    const getPosts = async () => {
+        const data = await getDocs(postRef);
+        setPostsList(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+    };
     return (
             <div>
                 <h4>main page</h4>
