@@ -1,5 +1,5 @@
 import { getDocs, collection } from "firebase/firestore";
-import { database } from "../config/firebase";
+import { database } from "../../config/firebase";
 import { useState, useEffect } from "react";
 
 interface Post {
@@ -20,11 +20,11 @@ export const  Main = () => {
     };
 
     useEffect(() => {
-
-    }, []);
+        getPosts();
+    }, );
     return (
             <div>
-                <h4>main page</h4>
+                <h4> {postsList?.map((post) => )} </h4>
             </div>
     )
 }
