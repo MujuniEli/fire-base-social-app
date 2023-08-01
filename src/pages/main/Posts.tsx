@@ -2,15 +2,21 @@ import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { auth, database } from "../../config/firebase";
 import { Post as Ipost } from "./Main"
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
     post: Ipost;
 }
 
+interface Like {
+    userId: string;
+}
+
 export const Post = (props: Props) => {
     const { post } = props;
     const [user] = useAuthState(auth);
+
+    const [likes, setLikes] = useState<Like[] | null>(null)
 
     const likesRef = collection(database, "likes");
 
@@ -18,7 +24,7 @@ export const Post = (props: Props) => {
 
     const getLikes = async () => {
        const data = await getDocs(likesDoc)
-       console.log(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+       setLikes(data.docs.map((doc) => ({ userId: doc.data().userId })));
     }
 
     const addLike = async () => {
@@ -28,8 +34,11 @@ export const Post = (props: Props) => {
         });
     };
 
+    const hasUserLiked = likes?.find((like) => like.userId === user?.uid);
+
     useEffect(() => {
         getLikes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -42,8 +51,8 @@ export const Post = (props: Props) => {
                     </div>
                     <div className="footer">
                         <p> @{post.userName} </p>
-                        <button onClick={addLike}> &#9825; </button>
-                        <p> Likes: </p>
+                        <button onClick={addLike}> {hasUserLiked ? <>&#x1F44E;</> : <>&#9825;</> } </button>
+                        {likes && <p> Likes: {likes?.length} </p>}
                     </div>
                 </div>
     )
