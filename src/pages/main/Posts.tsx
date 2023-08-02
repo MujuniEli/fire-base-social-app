@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, query, where, deleteDoc } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where, deleteDoc, doc } from "firebase/firestore";
 import { auth, database } from "../../config/firebase";
 import { Post as Ipost } from "./Main"
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -9,6 +9,7 @@ interface Props {
 }
 
 interface Like {
+    likeId: string;
     userId: string;
 }
 
@@ -72,7 +73,7 @@ export const Post = (props: Props) => {
                     </div>
                     <div className="footer">
                         <p> @{post.userName} </p>
-                        <button onClick={addLike}> {hasUserLiked ? <>&#x1F44E;</> : <>&#9825;</> } </button>
+                        <button onClick={hasUserLiked ? removeLike : addLike}> {hasUserLiked ? <>&#x1F44E;</> : <>&#9825;</> } </button>
                         {likes && <p> Likes: {likes?.length} </p>}
                     </div>
                 </div>
